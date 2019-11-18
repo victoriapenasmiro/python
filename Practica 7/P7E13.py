@@ -22,7 +22,7 @@ def calcularPrimowhile (num):
         if num%j==0 and j!=num:
             primo=" no es primo"
     end_time=datetime.now()        
-    return print(f"El número {num}{primo}. El bucle for ha tardado en ejecutarse: {end_time-start_time}")
+    return print(f"El número {num}{primo}. El bucle while ha tardado en ejecutarse: {end_time-start_time}")
 numero=int(input("Dame el número del que quieres que calcule si es primo: "))
 bucle=str(input("Dime si quieres que ejecute el programa con for o con while: "))
 while bucle!="for" and bucle!="while":
