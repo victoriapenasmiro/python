@@ -24,7 +24,7 @@ def mostrarMenu(agenda):
         elif opcion==3:
             consultarTodos(agenda)
         elif opcion==4:
-            eliminarContacto
+            eliminarContacto(agenda)
 
 def añadirContacto():
     global agenda
@@ -48,7 +48,9 @@ def consultarContacto(agenda):
     #Si el bucle termina y no encuentra el id del contacto, entonces indico
     # al usuario que ese id no existe:
     for j in agenda:
-        while clave!=j["contacto"]:
+        if j["contacto"] == clave:
+            break
+        elif j == agenda[-1] and j["contacto"] != clave:
             clave=int(input("El id indicado no es correcto, por favor, indica otro: "))
     for i in agenda:
         if i["contacto"]==clave:
@@ -78,17 +80,22 @@ def consultarTodos(agenda):
         print("Correo eletrónico:",i["email"])
         print("-------------")
 
-def eliminarContacto():
+def eliminarContacto(agenda):
     clave=int(input("Dime el id del contacto que quieres eliminar: "))
     for i in agenda:
-        while clave!=i["contacto"]:
-            clave=int(input("El id indicado no existe. Indica otro: "))
-    #necesito obtener el indice de la lista donde se encuentre el contacto
-    for i in agenda:
-        if i["contacto"]==clave:
-            eliminar i
-    
-    return
+        if i["contacto"] == clave:
+            break
+        elif i == agenda[-1] and i["contacto"] != clave:
+            clave=int(input("El id indicado no es correcto, por favor, indica otro: "))
+    #necesito el indice de la lista donde se encuentre el contacto para eliminarlo
+    for j in agenda:
+        indice=0
+        if j["contacto"]==clave:#compruebo que voy a eliminar el id correcto
+            del agenda[indice]#elimino el indice
+            break
+        else:
+            indice+=1
+    return agenda
 
 #VARIABLES
 agenda=[]
